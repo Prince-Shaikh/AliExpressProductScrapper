@@ -25,8 +25,6 @@ def extract_data(items):
             print(goal[0])
             break
         product_price = list_item.find('.price-current',first=True).text
-
-        #url = goal.get('imagePath')
         data = {'product_title': product_title, 'product_url': product_url, 'price': product_price, 'url': goal[0]}
         products_list.append(data)
 def create_csv():
