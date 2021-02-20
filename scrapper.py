@@ -18,13 +18,13 @@ def extract_data(items):
         product_url = ""
         for link in list_item.find('.item-title-wrap',first=True).absolute_links:
             product_url = link
-            r = requests.get(product_url)
-            match = re.search(r'data: ({.+})', r.text).group(1)
-            data = json.loads(match)
-            goal = [data['pageModule'][x] for x in target]
-            print(goal[0])
             break
         product_price = list_item.find('.price-current',first=True).text
+        r = requests.get(product_url)
+        match = re.search(r'data: ({.+})', r.text).group(1)
+        data = json.loads(match)
+        goal = [data['pageModule'][x] for x in target]
+        print(goal[0])
         data = {'product_title': product_title, 'product_url': product_url, 'price': product_price, 'url': goal[0]}
         products_list.append(data)
 def create_csv():
