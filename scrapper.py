@@ -20,6 +20,7 @@ def extract_data(items):
             product_url = link
             break
         product_price = list_item.find('.price-current',first=True).text
+        #from: https://stackoverflow.com/questions/61364719/how-can-i-scrape-aliexpress-product-data
         r = requests.get(product_url)
         match = re.search(r'data: ({.+})', r.text).group(1)
         data = json.loads(match)
